@@ -28,6 +28,13 @@ class MoleculeDataset(Dataset):
         super().__init__()
         self.test = test
         self.filename = filename
+    
+    @property
+    def raw_file_names(self):
+        """
+        If this file exists in raw_dir, the download is not triggered
+        """
+        return self.filename
 
     @property
     def processed_file_names(self):
@@ -37,6 +44,9 @@ class MoleculeDataset(Dataset):
         if self.test:
             return [f"data_test_{i}.pt" for i in list(self.data.index)]
         return [f"data_{i}.pt" for i in list(self.data.index)]
+    
+    def download(self):
+        pass
     
     def process(self):
         self.data = pd.read_csv(self.raw_paths[0]).reset_index()

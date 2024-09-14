@@ -1,1 +1,4 @@
 venv/
+mango/
+mlruns/
+src/__pycache__/
