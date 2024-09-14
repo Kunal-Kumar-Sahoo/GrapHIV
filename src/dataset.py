@@ -5,6 +5,7 @@ from torch_geometric.data import Dataset
 import deepchem as dc
 from rdkit import Chem
 
+import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
@@ -58,5 +59,19 @@ class MoleculeDataset(Dataset):
                 torch.save(data, os.path.join(self.processed_dir, f"data_{index}.pt"))
     
     def _get_label(self, label):
-        raise NotImplementedError
-
+        label = np.asarray([label])
+        return torch.tensor(label, dtype=torch.int64)
+    
+    def len(self):
+        return self.data.shape[0]
+    
+    def get(self, index):
+        """
+        Equivalent to `__getitem__` in torch, and is not needed for PyG's `InMemoryDataset`
+        """
+        if self.test:
+            data = torch.load(os.path.join(self.processed_dir, f"data_test_{index}.pt"))
+        else:
+            data = torch.load(os.path.join(self.processed_dir, f"data_{index}.pt"))
+        
+        return data
