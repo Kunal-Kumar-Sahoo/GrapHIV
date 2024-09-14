@@ -10,16 +10,10 @@ import pandas as pd
 from tqdm import tqdm
 
 import os
-import logging
 
-logging.basicConfig(level=logging.INFO,
-                    format="%(asctime)s %(message)s",
-                    datefmt="%H:%M:%S",
-                    handlers=[logging.StreamHandler()])
-
-logging.info(f"Torch version: {torch.__version__}")
-logging.info(f"CUDA availability: {torch.cuda.is_available()}")
-logging.info(f"PyG version: {pyg.__version__}")
+print(f"[INFO] Torch version: {torch.__version__}")
+print(f"[INFO] CUDA availability: {torch.cuda.is_available()}")
+print(f"[INFO] PyG version: {pyg.__version__}")
 
 
 class MoleculeDataset(Dataset):
