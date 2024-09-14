@@ -25,9 +25,9 @@ class MoleculeDataset(Dataset):
         transform: Transformations performed after loading the dataset
         pre_transform: Transformations performed before loading the dataset
         """
-        super().__init__()
         self.test = test
         self.filename = filename
+        super(MoleculeDataset, self).__init__(root, transform, pre_transform)
     
     @property
     def raw_file_names(self):

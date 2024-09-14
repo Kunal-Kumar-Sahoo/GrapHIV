@@ -15,7 +15,7 @@ HYPERPARAMETERS = {
     "model_layers": [3],
     "model_dropout_rate": [0.2, 0.5, 0.9],
     "model_top_k_ratio": [0.2, 0.5, 0.8, 0.9],
-    "model_top_k_every_n": [0],
+    "model_top_k_every_n": [1],
     "model_dense_neurons": [16, 128, 256, 32]
 }
 
